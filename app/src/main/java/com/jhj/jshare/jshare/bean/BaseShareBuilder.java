@@ -3,11 +3,8 @@ package com.jhj.jshare.jshare.bean;
 import java.io.Serializable;
 
 /**
- * @author吕志豪 .
- * @date 18-2-2  上午10:35.
- * Github :https://github.com/lvzhihao100
- * E-Mail：1030753080@qq.com
- * 简书 :http://www.jianshu.com/u/6e525b929aac
+ * 分享的基类
+ * Created by jhj on 18-5-25.
  */
 
 public abstract class BaseShareBuilder implements Serializable {

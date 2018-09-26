@@ -1,20 +1,32 @@
 package com.jhj.jshare.jshare.bean;
 
-import java.io.Serializable;
-
 /**
- * @author吕志豪 .
- * @date 18-2-2  上午9:43.
- * Github :https://github.com/lvzhihao100
- * E-Mail：1030753080@qq.com
- * 简书 :http://www.jianshu.com/u/6e525b929aac
+ * 分享图片
+ * Image路径至少选择一个
+ * Created by jhj on 18-5-25.
  */
 
-public class ImgShareBuilder extends BaseShareBuilder  {
-    //路径至少有一个
-    private String imageUrl;//网路路径
-    private String imagePath;//本地路径
+public class ImgShareBuilder extends BaseShareBuilder {
 
+    private String text;
+    /**
+     * 网路路径
+     */
+    private String imageUrl;
+    /**
+     * 本地路径
+     */
+    private String imagePath;
+
+
+    public String getText() {
+        return text;
+    }
+
+    public ImgShareBuilder setText(String text) {
+        this.text = text;
+        return this;
+    }
 
     public ImgShareBuilder imgUrl(String imgUrl) {
         this.imageUrl = imgUrl;
@@ -38,5 +50,6 @@ public class ImgShareBuilder extends BaseShareBuilder  {
         this.imagePath = imagePath;
         return this;
     }
+
 
 }

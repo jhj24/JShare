@@ -1,21 +1,15 @@
 package com.jhj.jshare.jshare.bean;
 
 
-import java.io.Serializable;
-
 /**
- * @author吕志豪 .
- * @date 18-2-2  上午9:43.
- * Github :https://github.com/lvzhihao100
- * E-Mail：1030753080@qq.com
- * 简书 :http://www.jianshu.com/u/6e525b929aac
+ * 分享链接
+ * Created by jhj on 18-5-25.
  */
-
-public class LinkShareBuilder extends BaseShareBuilder  {
+public class LinkShareBuilder extends BaseShareBuilder {
 
     private String id;
     private String text;
-    private String title;
+    private String title;//Qzone(是)
     private String url;
     private String imageUrl;
     private String imagePath;

@@ -3,35 +3,32 @@ package com.jhj.jshare.jshare.bean;
 import java.io.Serializable;
 
 /**
- * @author吕志豪 .
- * @date 17-12-20  下午4:08.
- * Github :https://github.com/lvzhihao100
- * E-Mail：1030753080@qq.com
- * 简书 :http://www.jianshu.com/u/6e525b929aac
+ * 分享图标
+ * Created by jhj on 18-5-25.
  */
 
-public class GridBean implements Serializable{
+public class GridBean implements Serializable {
+    private int icon;
     private String title;
-    private int resId;
-    private int pos;
+    private int position;
 
-    public GridBean(String title, int resId) {
+    public GridBean(String title, int icon) {
         this.title = title;
-        this.resId = resId;
+        this.icon = icon;
     }
 
-    public GridBean(String title, int resId, int pos) {
+    public GridBean(String title, int icon, int position) {
         this.title = title;
-        this.resId = resId;
-        this.pos = pos;
+        this.icon = icon;
+        this.position = position;
     }
 
-    public int getPos() {
-        return pos;
+    public int getPosition() {
+        return position;
     }
 
-    public void setPos(int pos) {
-        this.pos = pos;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public String getTitle() {
@@ -42,11 +39,11 @@ public class GridBean implements Serializable{
         this.title = title;
     }
 
-    public int getResId() {
-        return resId;
+    public int getIcon() {
+        return icon;
     }
 
-    public void setResId(int resId) {
-        this.resId = resId;
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }

@@ -2,12 +2,8 @@ package com.jhj.jshare.jshare
 
 
 /**
- * @author吕志豪 .
- * @date 18-4-2  下午5:07.
- * Github :https://github.com/lvzhihao100
- * E-Mail：1030753080@qq.com
- * 简书 :http://www.jianshu.com/u/6e525b929aac
- * 收藏工具类
+ *
+ * Created by jhj on 18-5-25.
  */
 object CollectionUtil {
 
