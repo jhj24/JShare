@@ -11,6 +11,8 @@ import cn.jiguang.share.qqmodel.QZone
 import cn.jiguang.share.wechat.Wechat
 import cn.jiguang.share.wechat.WechatFavorite
 import cn.jiguang.share.wechat.WechatMoments
+import cn.jiguang.share.weibo.SinaWeibo
+import cn.jiguang.share.weibo.SinaWeiboMessage
 import com.jhj.jshare.R
 import com.jhj.jshare.jshare.bean.GridBean
 import com.jhj.jshare.jshare.bean.ImgShareBuilder
@@ -80,7 +82,9 @@ class JShareDialog(private val activity: Activity) {
                         gridBeans.add(GridBean("qq空间", R.mipmap.ic_share_qzone, 7))
                         gridBeans.add(GridBean("新浪微博", R.mipmap.ic_share_weibo, 8))
                         if (isLinkShare)
-                            gridBeans.add(GridBean("用浏览器打开", R.mipmap.ic_share_liulanqi, 9))
+                            gridBeans.add(GridBean("新浪私信", R.mipmap.ic_share_weibo, 9))
+                        if (isLinkShare)
+                            gridBeans.add(GridBean("用浏览器打开", R.mipmap.ic_share_liulanqi, 10))
                         val adapter = GridAdapter()
                         adapter.dataList = gridBeans
                         recyclerView.adapter = adapter
@@ -132,8 +136,9 @@ class JShareDialog(private val activity: Activity) {
                         5 -> shareTo()?.share2WeXin(WechatMoments.Name) //朋友圈
                         6 -> shareTo()?.share2Q(QQ.Name) //QQ
                         7 -> shareTo()?.share2Q(QZone.Name) //QQ空间
-                        8 -> shareTo()?.share2Sina() //新浪
-                        9 -> shareTo()?.share2Explorer() //浏览器
+                        8 -> shareTo()?.share2Sina(SinaWeibo.Name) //新浪
+                        9 -> shareTo()?.share2Sina(SinaWeiboMessage.Name) //新浪私信
+                        10 -> shareTo()?.share2Explorer() //浏览器
                     }
                     dialog.dismiss()
 

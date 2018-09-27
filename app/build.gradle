@@ -57,10 +57,10 @@ dependencies {
 
     //极光分享
     implementation 'cn.jiguang.sdk:jcore:1.2.0'
-    implementation 'cn.jiguang.sdk:jshare:1.5.0'
-    implementation 'cn.jiguang.sdk:jshare-qqmodel:1.5.0' //QQ
-    implementation 'cn.jiguang.sdk:jshare-wechatmodel:1.5.0'//weChat
-    implementation 'cn.jiguang.sdk:jshare-sinamodel:1.5.0'//sina
+    implementation 'cn.jiguang.sdk:jshare:1.6.1'
+    implementation 'cn.jiguang.sdk:jshare-qqmodel:1.6.1' //QQ
+    implementation 'cn.jiguang.sdk:jshare-wechatmodel:1.6.1'//weChat
+    implementation 'cn.jiguang.sdk:jshare-sinamodel:1.6.1'//sina
 
 
     implementation 'com.github.jhj24:PromptDialog:v0.8.5'

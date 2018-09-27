@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val url = "https://www.eqid.top:8009/image/workCircle/20180926/13926590001/2018092616372553700.jpg"
         btn_text.onClick {
             val textShare = TextShareBuilder()
             textShare.setText("测试")
@@ -26,7 +27,8 @@ class MainActivity : AppCompatActivity() {
             val b = "/storage/emulated/0/Download/08-27-33-image.jpg"
             linkShare.setText("测试")
                     .setTitle("测试分享")
-                    .setImagePath(b)
+                    //.setImagePath(b)
+                    .setImageUrl(url)
                     .setUrl("http://baidu.com")
             JShareDialog(this@MainActivity, linkShare).show()
         }

@@ -38,7 +38,7 @@ class ImageAsync(private val platform: String, private val shareParams: SharePar
 
     override fun onPostExecute(bitmap: Bitmap) {
         shareParams.imageData = bitmap
-        JShareUtil.share(platform, shareParams)
+        JShareUtil().share(platform, shareParams)
     }
 
     /**
