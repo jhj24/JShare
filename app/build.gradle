@@ -63,7 +63,7 @@ dependencies {
     implementation 'cn.jiguang.sdk:jshare-sinamodel:1.6.1'//sina
 
 
-    implementation 'com.github.jhj24:PromptDialog:v0.8.5'
+    implementation 'com.github.jhj24:PromptDialog:v0.8.6'
 }
 kotlin {
     experimental {

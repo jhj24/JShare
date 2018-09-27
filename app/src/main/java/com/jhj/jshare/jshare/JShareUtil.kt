@@ -1,11 +1,13 @@
 package com.jhj.jshare.jshare
 
 import android.app.Activity
+import android.app.Application
 import android.content.ComponentName
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import cn.jiguang.share.android.api.JShareInterface
@@ -19,11 +21,11 @@ import cn.jiguang.share.wechat.WechatFavorite
 import cn.jiguang.share.wechat.WechatMoments
 import cn.jiguang.share.weibo.SinaWeibo
 import com.jhj.jshare.MainActivity
-import com.jhj.jshare.MyApplication
 import com.jhj.jshare.R
 import com.jhj.jshare.jshare.bean.ImgShareBuilder
 import com.jhj.jshare.jshare.bean.LinkShareBuilder
 import com.jhj.jshare.jshare.bean.TextShareBuilder
+import com.jhj.prompt.dialog.progress.LoadingFragment
 import org.jetbrains.anko.doAsyncResult
 import org.jetbrains.anko.toast
 import java.io.ByteArrayInputStream
@@ -39,13 +41,14 @@ import javax.net.ssl.HttpsURLConnection
  * Created by jhj on 18-5-25.
  */
 
-class JShareUtil() {
+class JShareUtil(mActivity: Activity) {
 
     private lateinit var imgShareBuilder: ImgShareBuilder
     private lateinit var textShareBuilder: TextShareBuilder
     private lateinit var linkShareBuilder: LinkShareBuilder
     private var type: ShareType? = null
     private var mActivity: Activity? = null
+    private var dialog: LoadingFragment.Builder? = null
 
 
     enum class ShareType {
@@ -56,20 +59,28 @@ class JShareUtil() {
           VIDEO*/
     }
 
+    init {
+        dialog = LoadingFragment
+                .Builder(mActivity)
+                .setBlackStyle()
+                .setDimAmount(0.3f)
 
-    constructor(imgShareBuilder: ImgShareBuilder, mActivity: Activity) : this() {
+    }
+
+
+    constructor(imgShareBuilder: ImgShareBuilder, mActivity: Activity) : this(mActivity) {
         this.mActivity = mActivity
         this.imgShareBuilder = imgShareBuilder
         type = ShareType.IMG
     }
 
-    constructor(textShareBuilder: TextShareBuilder, mActivity: Activity) : this() {
+    constructor(textShareBuilder: TextShareBuilder, mActivity: Activity) : this(mActivity) {
         this.mActivity = mActivity
         this.textShareBuilder = textShareBuilder
         type = ShareType.TEXT
     }
 
-    constructor(linkShareBuilder: LinkShareBuilder, mActivity: Activity) : this() {
+    constructor(linkShareBuilder: LinkShareBuilder, mActivity: Activity) : this(mActivity) {
         this.mActivity = mActivity
         this.linkShareBuilder = linkShareBuilder
         type = ShareType.LINK
@@ -254,7 +265,10 @@ class JShareUtil() {
 
 
     fun share(platForm: String, shareParams: ShareParams) {
-
+        onActivityListener()
+        if (dialog?.isShow() != true) {
+            dialog?.show()
+        }
         JShareInterface.share(platForm, shareParams, object : PlatActionListener {
             override fun onComplete(platform: Platform, i: Int, hashMap: HashMap<String, Any>) {
                 println("分享成功")
@@ -285,6 +299,7 @@ class JShareUtil() {
 
 
     fun shareBitmap(string: String?, platform: String, shareParams: ShareParams) {
+        dialog?.show()
         doAsyncResult {
             var bitmap: Bitmap
             try {
@@ -295,12 +310,10 @@ class JShareUtil() {
                 val inStream = conn.inputStream//通过输入流获取图片数据
                 bitmap = BitmapFactory.decodeStream(inStream)
             } catch (e: Exception) {
-                bitmap = BitmapFactory.decodeResource(MyApplication.instance.resources, R.mipmap.ic_launcher)
+                bitmap = BitmapFactory.decodeResource(mActivity?.resources, R.mipmap.ic_launcher)
             }
-            bitmap
             //compressBitmap(bitmap)
-        }.get().let {
-            shareParams.imageData = it
+            shareParams.imageData = bitmap
             share(platform, shareParams)
         }
     }
@@ -335,5 +348,32 @@ class JShareUtil() {
             isBm.close()
         }
         return bitmap
+    }
+
+    private fun onActivityListener() {
+        mActivity?.application?.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
+            override fun onActivityPaused(activity: Activity?) {
+                dialog?.dismiss()
+            }
+
+            override fun onActivityResumed(activity: Activity?) {
+            }
+
+            override fun onActivityStarted(activity: Activity?) {
+            }
+
+            override fun onActivityDestroyed(activity: Activity?) {
+            }
+
+            override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+            }
+
+            override fun onActivityStopped(activity: Activity?) {
+            }
+
+            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+            }
+
+        })
     }
 }

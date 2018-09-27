@@ -20,6 +20,7 @@ public class MyApplication extends Application {
         instance = this;
 
         //------极光分享-------
+        JShareInterface.setDebugMode(true);
         PlatformConfig shareConfig = new PlatformConfig();
         shareConfig.setQQ("1106544832", "1xE6T3nBMibIO5fT");
         shareConfig.setWechat("wx225929aa256e2053", "980d8583d596984fb5c162f6baf1f215");
